@@ -36,5 +36,3 @@ function xmldb_webpa_upgrade($oldversion=0) {
 /// always the last line in the script
     return $result;
 }
-
-?>

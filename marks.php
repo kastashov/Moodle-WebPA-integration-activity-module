@@ -74,8 +74,6 @@ else
 	}
 	else
 	{
-	print_error('<h2>Error $rslt submitting grades to gradebook.</h2>');
+	    print_error('<h2>Error $rslt submitting grades to gradebook.</h2>');
 	}
 }
-
-?>

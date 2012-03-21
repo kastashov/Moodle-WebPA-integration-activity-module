@@ -14,4 +14,3 @@ $rslt = sso_api_call($site,$CFG->webpa_server."/api/api.php",array('externalid' 
 $forms = $rslt['forms'];
 echo json_encode($forms);
 
-?>

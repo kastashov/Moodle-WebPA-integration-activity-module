@@ -75,6 +75,4 @@ With each new assessment, you are given a number of options. This help file expl
 	<dd>If students are providing feedback, this is the text displayed adjacent to the feedback area.</dd>
 </dl>
 HTML;
-
-?>
 */

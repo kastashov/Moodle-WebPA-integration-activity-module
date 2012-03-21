@@ -154,4 +154,3 @@ function someValidation ($value) {
 	return ($opendate < $closedate);
 }
 
-?>

@@ -34,17 +34,15 @@ $ident = sso_sign_on($site,$CFG->webpa_externalid,$USER->$identifier);
 
 if($ident===false)
 {
-print_error("There was an error trying to sign in to WebPA. Please refresh to try again. If you continue to get this error, please report it to the site administrator.");
+    print_error("There was an error trying to sign in to WebPA. Please refresh to try again. If you continue to get this error, please report it to the site administrator.");
 }
 else
 {
-
-if(has_capability('mod/webpa:create',get_context_instance(CONTEXT_MODULE,$cm->id)))
-	$url = "{$CFG->webpa_server}/login_check.php?sso_ident=$ident&redirect=".urlencode("tutors/assessments/?tab=open");
-else
-	$url = "{$CFG->webpa_server}/login_check.php?sso_ident=$ident&redirect=".urlencode("students/assessments/take/index.php?a=$webpa->assessment");
-
-redirect($url);
+    if(has_capability('mod/webpa:create',get_context_instance(CONTEXT_MODULE,$cm->id))) {
+        $url = "{$CFG->webpa_server}/login_check.php?sso_ident=$ident&redirect=".urlencode("tutors/assessments/?tab=open");
+    } else {
+        $url = "{$CFG->webpa_server}/login_check.php?sso_ident=$ident&redirect=".urlencode("students/assessments/take/index.php?a=$webpa->assessment");
+    }
+    redirect($url);
 }
 
-?>

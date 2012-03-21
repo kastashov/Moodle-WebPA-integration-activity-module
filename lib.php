@@ -1,21 +1,10 @@
-<?php  // $Id: lib.php,v 1.7.2.5 2009/04/22 21:30:57 skodak Exp $
+<?php 
 
 require_once("$CFG->dirroot/local/sso/libsso.php");
 //require_once("$CFG->libroot/grouplib.php");
 
 /**
  * Library of functions and constants for module webpa
- * This file should have two well differenced parts:
- *   - All the core Moodle functions, neeeded to allow
- *     the module to work integrated in Moodle.
- *   - All the webpa specific functions, needed
- *     to implement all the module logic. Please, note
- *     that, if the module become complex and this lib
- *     grows a lot, it's HIGHLY recommended to move all
- *     these module specific functions to a new php file,
- *     called "locallib.php" (see forum, quiz...). This will
- *     help to save some memory when Moodle is performing
- *     actions across all modules.
  */
 
 /**
@@ -273,5 +262,3 @@ function webpa_supports($feature) {
 /// Remember (see note in first lines) that, if this section grows, it's HIGHLY
 /// recommended to move all funcions below to a new "localib.php" file.
 
-
-?>

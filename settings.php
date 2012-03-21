@@ -6,4 +6,3 @@ $settings->add(new admin_setting_configtext('webpa_externalid',"External ID",'An
 $settings->add(new admin_setting_configselect('webpa_identifier',"User Identifier",'Which field in a user\'s profile should be used as their username on WebPA.','username',
 	array('username' => get_string('username'), 'idnumber' => get_string('idnumber'), 'id' => 'User ID')));
 
-?>

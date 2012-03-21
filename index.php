@@ -3,12 +3,8 @@
 /**
  * This page lists all the instances of webpa in a particular course
  *
- * @author  Your Name <your@email.address>
- * @version $Id: index.php,v 1.7.2.3 2009/08/31 22:00:00 mudrd8mz Exp $
  * @package mod/webpa
  */
-
-/// Replace webpa with the name of your module and remove this line
 
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
@@ -92,5 +88,3 @@ echo html_writer::table($table);
 /// Finish the page
 
 echo $OUTPUT->footer($course);
-
-?>
