@@ -2,7 +2,7 @@
 
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
-require_once($CFG->dirroot."/local/sso/libsso.php");
+require_once($CFG->dirroot."/local/simplesso/libsso.php");
 require_once($CFG->libdir.'/gradelib.php');
 
 $id = required_param('id', PARAM_INT); // course_module ID, or
@@ -36,10 +36,10 @@ require_login($course, true, $cm);
 $ctxt = get_context_instance(CONTEXT_MODULE, $cm->id);
 require_capability('mod/webpa:viewmarks',$ctxt);
 
-$site = sso_site_for_name('webpa');
+$site = simplesso_site_for_name('webpa');
 if($getsheets)
 {
-	$rslt = sso_api_call($site,$CFG->webpa_server."/api/api.php",array('externalid' => $CFG->webpa_externalid, 'action' => 'mark-sheets', 'assessment' => $webpa->assessment));
+	$rslt = simplesso_api_call($site,$CFG->webpa_server."/api2/api.php",array('externalid' => $CFG->webpa_externalid, 'action' => 'mark-sheets', 'assessment' => $webpa->assessment));
 	if ($rslt['sheets']) {
 		foreach($rslt['sheets'] as $k => $v)
 		{
@@ -51,7 +51,7 @@ if($getsheets)
 }
 else
 {	
-	$rslt = sso_api_call($site,$CFG->webpa_server."/api/api.php",array('externalid' => $CFG->webpa_externalid, 'action' => 'marks', 'assessment' => $webpa->assessment, 'sheet' => $sheet));
+	$rslt = simplesso_api_call($site,$CFG->webpa_server."/api2/api.php",array('externalid' => $CFG->webpa_externalid, 'action' => 'marks', 'assessment' => $webpa->assessment, 'sheet' => $sheet));
 
 	$grades = array();
 	foreach($rslt['grades'] as $k => $v)
@@ -74,6 +74,8 @@ else
 	}
 	else
 	{
-	    print_error('<h2>Error $rslt submitting grades to gradebook.</h2>');
+	print_error('<h2>Error $rslt submitting grades to gradebook.</h2>');
 	}
 }
+
+?>

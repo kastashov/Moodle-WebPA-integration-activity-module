@@ -1,10 +1,21 @@
-<?php 
+<?php  // $Id: lib.php,v 1.7.2.5 2009/04/22 21:30:57 skodak Exp $
 
-require_once("$CFG->dirroot/local/sso/libsso.php");
+require_once("$CFG->dirroot/local/simplesso/libsso.php");
 //require_once("$CFG->libroot/grouplib.php");
 
 /**
  * Library of functions and constants for module webpa
+ * This file should have two well differenced parts:
+ *   - All the core Moodle functions, neeeded to allow
+ *     the module to work integrated in Moodle.
+ *   - All the webpa specific functions, needed
+ *     to implement all the module logic. Please, note
+ *     that, if the module become complex and this lib
+ *     grows a lot, it's HIGHLY recommended to move all
+ *     these module specific functions to a new php file,
+ *     called "locallib.php" (see forum, quiz...). This will
+ *     help to save some memory when Moodle is performing
+ *     actions across all modules.
  */
 
 /**
@@ -22,7 +33,7 @@ function webpa_add_instance($webpa) {
 
     # You may have to add extra stuff in here #
 	
-	$site = sso_site_for_name("webpa");
+	$site = simplesso_site_for_name("webpa");
 	
 	//group collection creation
 	$groups = $DB->get_records("groupings_groups", array("groupingid" => $webpa->collection));
@@ -54,7 +65,7 @@ function webpa_add_instance($webpa) {
 		$groupdata['groups'][$groupname] = $ret;
 	}
 	
-	$rslt = sso_api_call($site,$CFG->webpa_server."/api/api.php",$groupdata);
+	$rslt = simplesso_api_call($site,$CFG->webpa_server."/api2/api.php",$groupdata);
 	
 	if($rslt['status']=='failure')
 	{
@@ -78,7 +89,7 @@ function webpa_add_instance($webpa) {
 	$asstdata['student_feedback'] = isset($webpa->student_feedback);
 	$asstdata['feedback_name'] = $webpa->feedback_name;
 	
-	$rslt = sso_api_call($site,$CFG->webpa_server."/api/api.php",$asstdata);
+	$rslt = simplesso_api_call($site,$CFG->webpa_server."/api2/api.php",$asstdata);
 	
 	if($rslt['status']=='failure')
 	{
@@ -262,3 +273,5 @@ function webpa_supports($feature) {
 /// Remember (see note in first lines) that, if this section grows, it's HIGHLY
 /// recommended to move all funcions below to a new "localib.php" file.
 
+
+?>

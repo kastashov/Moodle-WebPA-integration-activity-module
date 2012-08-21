@@ -9,8 +9,10 @@
  * @package mod/webpa
  */
 
-$module->release        = '1.0.1';  
-$module->version        = 2011063001;  // The current module version (Date: YYYYMMDDXX)
-$module->requires       = 2010121400;
-$module->cron           = 0;           // Period for cron to check this module (secs)
-$module->dependencies   = array('local_sso' => 2011082900); // local/sso should be installed as a dependency
+$module->version  = 2012052100;  // The current module version (Date: YYYYMMDDXX)
+$module->cron     = 0;           // Period for cron to check this module (secs)
+$module->dependencies = array(
+	'local_simplesso' => 2012052100
+);
+
+?>

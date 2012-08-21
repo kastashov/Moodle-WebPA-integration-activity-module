@@ -33,3 +33,4 @@ $capabilities = array(
 	
 	);
 	
+?>

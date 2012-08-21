@@ -9,19 +9,19 @@
  */
 
 require_once($CFG->dirroot.'/course/moodleform_mod.php');
-require_once($CFG->dirroot.'/local/sso/libsso.php');
+require_once($CFG->dirroot.'/local/simplesso/libsso.php');
 
 class mod_webpa_mod_form extends moodleform_mod {
 
     function definition() {
 
-        global $COURSE, $CFG, $USER, $PAGE;
+        global $COURSE, $CFG, $USER, $PAGE, $DB;
         $mform =& $this->_form;
 
 		//$PAGE->require->js("$CFG->wwwroot/mod/webpa/validator.js");
 		$PAGE->requires->js("/mod/webpa/jquery.js");
 		$PAGE->requires->js("/mod/webpa/jquery-ui/js/jquery.ui.js");
-		$PAGE->requires->js("/mod/webpa/modform.js?v=2");
+		$PAGE->requires->js("/mod/webpa/modform.js");
 		
 		$PAGE->requires->css('/mod/webpa/jquery-ui/css/custom-theme/jquery.ui.css');
 		
@@ -48,19 +48,20 @@ class mod_webpa_mod_form extends moodleform_mod {
 		$mform->addElement('select','collection',get_string('grouping','webpa'),$options);
         $mform->addRule('collection', null, 'required', null, 'client');
 
-		$site = sso_site_for_name('webpa');
+		$site = simplesso_site_for_name('webpa');
 		if ($site == false) {
 			//we need to register the site
-			if ( ! empty($CFG->webpa_init_password) ) {
-				$site = sso_register_site("webpa",$CFG->webpa_server."/api/sso.php",$CFG->webpa_externalid,$CFG->webpa_init_password);
-			} else {
-				print_error("You need to set an initialisation password in settings.");
-			}
+			$site = simplesso_register_site("webpa",$CFG->webpa_server."/api2/sso.php",$CFG->webpa_externalid,$CFG->webpa_init_password);
+		} 
+
+		if ($site->url != $CFG->webpa_server."/api2/sso.php") {
+			$site->url = $CFG->webpa_server."/api2/sso.php";
+			$DB->update_record('local_simplesso_sites',$site);
 		}
 		
 		$identifier = $CFG->webpa_identifier;
-		$rslt = sso_api_call($site,$CFG->webpa_server."/api/api.php",array('externalid' => $CFG->webpa_externalid, 'action' => 'forms', 'owner' => $USER->$identifier));
-		
+		$rslt = simplesso_api_call($site,$CFG->webpa_server."/api2/api.php",array('externalid' => $CFG->webpa_externalid, 'action' => 'forms', 'owner' => $USER->$identifier));
+		error_log("have you ever $rslt");
 		//$rslt may be false - this is okay, we just want an empty list
 		//for that case, so we leave $forms as undefined
 		$forms = @$rslt['forms'];
@@ -68,8 +69,8 @@ class mod_webpa_mod_form extends moodleform_mod {
 		$mform->addElement('select','form',get_string('form','webpa'),$forms,array('id' => 'form_select'));
 		$mform->addRule('form','You must select a WebPA assessment form.','required');
 
-		$site = sso_site_for_name('webpa');
-		$ident = urlencode(sso_sign_on($site,$CFG->webpa_externalid,$USER->idnumber));
+		$site = simplesso_site_for_name('webpa');
+		$ident = urlencode(simplesso_sign_on($site,$CFG->webpa_externalid,$USER->idnumber));
 		$tempid = md5(mt_rand());
 		$redirect = urlencode("tutors/forms/create/");
 		
@@ -121,8 +122,8 @@ class mod_webpa_mod_form extends moodleform_mod {
 			$cm = get_coursemodule_from_id('webpa', $id);
 			$webpa = $DB->get_record('webpa', array('id' => $cm->instance));
 			
-			$site = sso_site_for_name('webpa');
-			$ident = urlencode(sso_sign_on($site,$CFG->webpa_externalid,$USER->idnumber));
+			$site = simplesso_site_for_name('webpa');
+			$ident = urlencode(simplesso_sign_on($site,$CFG->webpa_externalid,$USER->idnumber));
 			$redirect = urlencode("tutors/assessments/edit/edit_assessment.php?a=$webpa->assessment");
 			
 			$stredit = get_string('edit','webpa');
@@ -154,3 +155,4 @@ function someValidation ($value) {
 	return ($opendate < $closedate);
 }
 
+?>

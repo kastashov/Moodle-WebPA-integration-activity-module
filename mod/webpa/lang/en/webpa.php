@@ -1,11 +1,11 @@
 <?php
 
 $string['webpa'] = 'WebPA';
+$string['pluginname'] = 'WebPA';
 $string['pluginadministration'] = 'WebPA Administration';
 
 $string['modulename'] = 'WebPA Assessment';
 $string['modulenameplural'] = 'WebPA Assessments';
-$string['pluginname'] = 'WebPA';
 
 $string['options'] = 'Options';
 
@@ -23,13 +23,6 @@ $string['allow_feedback'] = 'Allow students to view feedback';
 $string['student_feedback'] = 'Allow students to provide their own feedback';
 $string['feedback_name'] = 'Prompt for students to provide feedback';
 
-$string['options_help'] = 'Hello, world';
-
-$string['webpa:attempt'] = 'Make attempt';
-$string['webpa:create'] = 'Create assessments';
-$string['webpa:viewmarks'] = 'View marks';
-
-/*
 $string['mods_help'] = <<<HTML
 <h1>What is WebPA?</h1> 
 <p>WebPA is an open source online peer assessment tool that enables every team member to recognise individual contributions to group work.</p> 
@@ -75,4 +68,5 @@ With each new assessment, you are given a number of options. This help file expl
 	<dd>If students are providing feedback, this is the text displayed adjacent to the feedback area.</dd>
 </dl>
 HTML;
-*/
+
+?>

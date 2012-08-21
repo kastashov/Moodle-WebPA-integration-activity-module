@@ -3,12 +3,16 @@
 /**
  * This page prints a particular instance of webpa
  *
+ * @author  Your Name <your@email.address>
+ * @version $Id: view.php,v 1.6.2.3 2009/04/17 22:06:25 skodak Exp $
  * @package mod/webpa
  */
 
+/// (Replace webpa with the name of your module and remove this line)
+
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
-require_once($CFG->dirroot."/local/sso/libsso.php");
+require_once($CFG->dirroot."/local/simplesso/libsso.php");
 
 $PAGE->requires->js('/mod/webpa/jquery.js');
 $PAGE->requires->js('/mod/webpa/view.js');
@@ -117,3 +121,4 @@ echo $OUTPUT->box_end();
 /// Finish the page
 echo $OUTPUT->footer($course);
 
+?>
