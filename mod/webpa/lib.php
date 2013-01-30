@@ -253,11 +253,7 @@ function webpa_scale_used($webpaid, $scaleid) {
 function webpa_scale_used_anywhere($scaleid) {
 	global $DB;
 	
-    if ($scaleid and $DB->record_exists('webpa', array('grade' => -$scaleid))) {
-        return true;
-    } else {
-        return false;
-    }
+    return false;
 }
 
 function webpa_supports($feature) {
