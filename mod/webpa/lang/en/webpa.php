@@ -23,13 +23,16 @@ $string['allow_feedback'] = 'Allow students to view feedback';
 $string['student_feedback'] = 'Allow students to provide their own feedback';
 $string['feedback_name'] = 'Prompt for students to provide feedback';
 
-$string['mods_help'] = <<<HTML
+// caps
+$string['webpa:addinstance'] = "Add a new WebPA activity";
+
+$string['modulename_help'] = <<<HTML
 <h1>What is WebPA?</h1> 
 <p>WebPA is an open source online peer assessment tool that enables every team member to recognise individual contributions to group work.</p> 
-<p><img border="0" src="webpa/tutor_marks.png" align="centre" /></p> 
+<p><img border="0" src="{$CFG->wwwroot}/mod/webpa/lang/en/tutor_marks.png" align="centre" width="278px" /></p> 
 <p>A well known criticism of assessed group work is that each student receives the same team mark, regardless of individual performance.</p> 
 <p>By using WebPA to peer assess group work, each student received an adjusted mark.</p> 
-<p><img border="0" src="webpa/moded_marks.png" /></p> 
+<p><img border="0" src="{$CFG->wwwroot}/mod/webpa/lang/en/moded_marks.png" align="center" width="278px" /></p> 
 <p>Marked by students, the people that know!</p>
 <h1>Using WebPA from Moodle</h1>
 <p>Using WebPA from Moodle is easy. When you add a new WebPA assessment in Moodle, you'll be prompted to select one of your assesssments. If you haven't created one, click Create New Assessment. When you're done, the window will close, and Moodle will have selected "(New Assessment)" from the Assessment dropdown box. Enter a name for your assessment, and a description if you'd like, then hit 'Save and Display'. Your new assessment is now in your course.</p>
@@ -38,6 +41,7 @@ $string['mods_help'] = <<<HTML
 <p>In order to bring results in to Moodle from WebPA, you'll need to create a marking sheet. WebPA allows you to create multiple mark sheets per assessment, but you'll only be able to import one to the Moodle Gradebook.</p>
 <p>When you click on 'Import marks to Gradebook', Moodle will fetch all your mark sheets from WebPA. If you haven't marked your assessment yet, you will be prompted to do so. You can select a mark sheet from the dropdown box (they are ordered by the date you created them), and the marking details will be previewed. When you've selected the mark sheet you want, hit 'Submit to Gradebook'.</p>
 <p>Remember, if you want a more detailed breakdown of your students' marks, you can view them from within WebPA: on the 'Marked' tab of your assessments, you'll see all your marked assessments listed with their mark sheets. Clicking 'View Reports' will give you a number of different breakdowns of your students' grades.</p>
+<p>The link below will provide video tutorials with further details of the WebPA Moodle plugin:<br /><br /><a href="https://www.youtube.com/playlist?list=PL21AA7B7A029DF323" title="WebPA Moodle Plugin Tutorials" target="_blank">UNSW WebPA Tutorials</a></p>
 HTML;
 
 $string['options_help'] = <<<HTML
